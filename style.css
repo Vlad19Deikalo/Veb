@@ -1,0 +1,135 @@
+:root {
+    --accent-gold: #b58b5d;
+    --primary-dark: #2c3e50;
+    --bg-light: #f4f7f6;
+}
+
+/* FLEX UTILITIES */
+.d-flex { display: flex; }
+.align-items-center { align-items: center; }
+.justify-content-center { justify-content: center; }
+
+body { font-family: 'Roboto', sans-serif; padding-top: 70px; margin: 0; }
+
+/* NAVBAR FLEXBOX */
+.furniture-navbar { background: #fff !important; border-bottom: 1px solid #ddd; }
+
+.navbar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+/* HERO FLEXBOX */
+.hero-flex {
+    background: var(--primary-dark);
+    color: white;
+    min-height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Вирівнювання по лівому краю */
+}
+
+.hero-content h1 { font-family: 'Playfair Display', serif; font-size: 80px; }
+.hero-content h1 span { color: var(--accent-gold); }
+
+.hero-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* PRODUCTS GRID FLEXBOX */
+.products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 40px 0;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    flex-basis: calc(25% - 20px); /* 4 колонки мінус відступи */
+    flex-grow: 0;
+    flex-shrink: 1;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Змушує контент займати все місце, щоб кнопки були в лінію */
+}
+
+.product-card:hover { transform: translateY(-5px); border-color: var(--accent-gold); }
+
+/* BENEFITS FLEXBOX */
+.benefits-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 40px 0;
+    background: var(--bg-light);
+}
+
+.benefit-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 180px;
+    flex-grow: 1;
+    text-align: center;
+    padding: 20px;
+}
+
+.benefit-item span { font-size: 35px; color: var(--accent-gold); margin-bottom: 10px; }
+
+/* FOOTER FLEXBOX */
+.site-footer { background: var(--primary-dark); color: #fff; padding: 40px 0; }
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .product-card { flex-basis: calc(50% - 20px); } /* 2 колонки */
+}
+
+@media (max-width: 768px) {
+    .hero-flex { align-items: center; text-align: center; }
+    .hero-buttons { flex-direction: column; width: 100%; }
+    .product-card { flex-basis: 100%; } /* 1 колонка */
+    .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+}

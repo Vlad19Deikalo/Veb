@@ -2,9 +2,13 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Меблеві Системи Про - Склад Фурнітури 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Меблеві Системи Про | Склад 2026</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+
     <style>
         :root {
             --accent-gold: #b58b5d;
@@ -13,297 +17,257 @@
         }
 
         body {
-            margin: 0;
             font-family: 'Roboto', sans-serif;
-            color: #333;
-            line-height: 1.6;
+            padding-top: 70px;
+            margin: 0;
+            background-color: #fff;
+            overflow-x: hidden;
         }
 
-        /* Шапка сайту */
-        header {
-            background-color: white;
-            padding: 20px 5%;
+        /* --- FLEXBOX НАВІГАЦІЯ (Лаба 8) --- */
+        .furniture-navbar {
+            background-color: #fff !important;
+            border-bottom: 2px solid var(--bg-beige);
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-container {
+            display: flex; 
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-dark) !important;
+            font-weight: 700;
+        }
+
+        .navbar-brand img {
+            height: 35px; /* ЛОГО ТЕПЕР ЗМЕНШЕНЕ ТА РІВНЕ */
+            margin-right: 10px;
+            width: auto;
+        }
+
+        .nav-links-flex {
+            display: flex; 
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 25px;
+        }
+
+        .nav-links-flex a {
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links-flex a:hover { color: var(--accent-gold); }
+
+        /* --- HERO SECTION --- */
+        .hero-flex {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero.jpg');
+            background-color: var(--primary-dark);
+            background-size: cover;
+            min-height: 500px;
+            display: flex; 
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            padding: 0 10%;
+        }
+
+        .hero-flex h1 { font-family: 'Playfair Display', serif; font-size: 60px; margin: 0; }
+        .hero-flex h1 span { color: var(--accent-gold); font-size: 80px; }
+        .hero-flex p { font-size: 20px; max-width: 550px; margin: 20px 0; }
+
+        .hero-buttons { display: flex; gap: 15px; }
+
+        /* --- КАТАЛОГ (FLEX GRID - Лаба 8) --- */
+        .catalog-section { padding: 80px 0; }
+        .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 45px; margin-bottom: 50px; }
+
+        .products-flex-grid {
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .product-card-flex {
+            display: flex; 
+            flex-direction: column;
+            flex-basis: calc(25% - 30px); /* 4 в ряд */
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 25px;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+
+        .product-card-flex:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: var(--accent-gold); }
+        .product-card-flex img { height: 160px; object-fit: contain; margin-bottom: 20px; }
+        
+        .card-content { flex-grow: 1; } /* ВИТЯГУЄ КАРТКУ, ЩОБ КНОПКИ БУЛИ В РЯД */
+
+        /* --- ПЕРЕВАГИ (FLEX + ORDER - Лаба 8) --- */
+        .benefits-flex {
+            background-color: var(--bg-beige);
+            padding: 60px 0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .benefit-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-basis: 220px;
+            padding: 20px;
+        }
+
+        .benefit-item .glyphicon { font-size: 45px; color: var(--accent-gold); margin-bottom: 15px; }
+        .benefit-item strong { font-size: 18px; color: #333; }
+
+        /* --- ФУТЕР --- */
+        .footer-flex {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.8);
+            padding: 50px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
         }
 
-        header div {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        /* АДАПТИВНІСТЬ */
+        @media (max-width: 1200px) {
+            .product-card-flex { flex-basis: calc(33.333% - 30px); }
         }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-            margin: 0;
-            padding: 0;
+        @media (max-width: 992px) {
+            .product-card-flex { flex-basis: calc(50% - 30px); }
+            .hero-flex h1 { font-size: 50px; }
         }
-
-        nav a {
-            text-decoration: none;
-            color: var(--primary-dark);
-            font-weight: 700;
-            transition: color 0.3s;
+        @media (max-width: 768px) {
+            .navbar-container { flex-direction: column; gap: 10px; }
+            .hero-flex { text-align: center; align-items: center; padding: 40px 5%; }
+            .product-card-flex { flex-basis: 100%; }
+            .footer-flex { flex-direction: column; text-align: center; gap: 30px; }
         }
-
-        nav a:hover {
-            color: var(--accent-gold);
-        }
-
-        /* Секція HERO (Лістинг 2.2 + 3.2) */
-        .hero {
-            background-color: var(--primary-dark);
-            color: white;
-            padding: 100px 5%;
-            position: relative;
-            display: flex;
-            align-items: center;
-            min-height: 400px;
-        }
-
-        .hero-content {
-            position: relative; 
-            z-index: 2;
-            width: 100%;
-        } 
-
-        .hero h1 { 
-            font-family: 'Playfair Display', serif;
-            font-size: 90px;
-            line-height: 1.1;
-            margin-bottom: 25px; 
-        } 
-
-        .hero h1 span {
-            font-size: 110px;
-            font-weight: 700; 
-        } 
-
-        .hero p { 
-            font-size: 24px;
-            margin-bottom: 40px;
-            color: #f0f0f0;
-            max-width: 600px; 
-        } 
-
-        /* Кнопки (Лістинг 2.2) */
-        .btn { 
-            padding: 18px 45px;
-            font-size: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            border: none; 
-            transition: all 0.3s ease;
-            display: inline-block;
-            text-decoration: none;
-        } 
-
-        .btn-primary { 
-            background-color: var(--accent-gold); 
-            color: #fff;
-            margin-right: 20px; 
-        } 
-
-        .btn-outline {
-            background-color: transparent;
-            border: 3px solid #ccc;
-            color: #ccc;
-        }
-
-        /* Слайдер (Лістинг 3.2) */
-        .slider-controls { 
-            position: absolute; 
-            bottom: 50px; 
-            left: 5%; 
-            z-index: 10; 
-        } 
-
-        .slider-arrow { 
-            float: left; 
-            width: 50px; 
-            height: 50px; 
-            background-color: rgba(62, 44, 34, 0.6); 
-            color: white; 
-            border-radius: 50%; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            margin-right: 15px; 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
-        } 
-
-        .slider-arrow:hover { 
-            background-color: var(--accent-gold); 
-        } 
-
-        .clear-floats { 
-            clear: both; 
-        }
-
-        /* Секція товарів (Лістинг 2.2 + 3.2) */
-        .popular { 
-            padding: 100px 5%;
-            text-align: center; 
-        } 
-
-        .popular h2 { 
-            font-family: 'Playfair Display', serif;
-            font-size: 56px;
-            margin-bottom: 70px; 
-            color: #222; 
-        } 
-
-        .products-grid { 
-            display: flex; 
-            justify-content: space-between; 
-            flex-wrap: wrap; 
-            gap: 30px; 
-        } 
-
-        .product-card { 
-            background: transparent;
-            width: 22%;
-            min-width: 260px;
-            text-align: center; 
-            position: relative; /* Обов'язково для бейджа */
-        } 
-
-        /* Бейдж (Лістинг 3.2) */
-        .badge-hit { 
-            position: absolute; 
-            top: -15px; 
-            right: -15px; 
-            background-color: #d9534f; 
-            color: white; 
-            padding: 5px 15px; 
-            border-radius: 20px; 
-            font-weight: bold; 
-            z-index: 5; 
-            transform: rotate(15deg); 
-        } 
-
-        .product-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            margin-bottom: 25px; 
-            filter: drop-shadow(0 15px 20px rgba(0,0,0,0.2)); 
-            transition: transform 0.3s;
-        } 
-
-        .product-card img:hover { transform: scale(1.05); }
-
-        .btn-card { 
-            background-color: var(--accent-gold);
-            color: white;
-            border: none;
-            padding: 12px 35px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: 600; 
-        } 
-
-        /* Переваги та Підвал (Лістинг 2.2) */
-        .benefits { background-color: var(--bg-beige); padding: 80px 5%; margin-top: 60px; }
-        .benefits-grid { display: flex; justify-content: space-around; text-align: center; }
-        .benefit-item span { font-weight: 700; font-size: 24px; color: #333; display: block; }
-
-        .footer { background-color: var(--primary-dark); color: #fff; padding: 60px 5%; }
-        .footer-content { display: flex; justify-content: space-between; align-items: center; }
-        .hours-text h4 { color: var(--accent-gold); font-size: 22px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
-    <header> 
-        <div> 
-            <img src="logo_furniture.png" alt="Лого" width="40">
-            <strong>Меблеві Системи Про</strong> 
-        </div> 
-        <nav> 
-            <ul> 
-                <li><a href="#">Складський облік</a></li> 
-                <li><a href="#">Каталог</a></li> 
-                <li><a href="#">Заявки</a></li> 
-                <li><a href="#">Звітність</a></li> 
-            </ul> 
-        </nav> 
-        <div><a href="#" style="color:var(--accent-gold); font-weight:bold; text-decoration:none;">Кошик</a></div>
-    </header> 
-
-    <main> 
-        <section class="hero"> 
-            <div class="hero-content">
-                <h1>Якісна <br><span>Фурнітура</span></h1> 
-                <p>Керуйте запасами меблевої фурнітури: від петель до складних висувних систем.</p> 
-                <a href="#" class="btn btn-primary">Оформити</a> 
-                <a href="#" class="btn btn-outline">Залишки</a> 
-            </div>
-
-            <div class="slider-controls"> 
-                <div class="slider-arrow prev-arrow">&#9664;</div> 
-                <div class="slider-arrow next-arrow">&#9654;</div>
-                <div class="clear-floats"></div> 
-            </div> 
-        </section> 
-
-        <section class="popular"> 
-            <h2>Популярні категорії</h2> 
-            <div class="products-grid">
-                
-                <article class="product-card"> 
-                    <div class="badge-hit">Хіт!</div> <img src="1.jpeg" alt="Завіси"> 
-                    <h3>Завіси та петлі</h3> 
-                    <p>Накладні та внутрішні петлі з доводчиками.</p> 
-                    <button class="btn-card">Додати</button> 
-                </article> 
-
-                <article class="product-card"> 
-                    <img src="2.png" alt="Направляючі"> 
-                    <h3>Направляючі</h3> 
-                    <p>Системи повного висунення для шухляд.</p> 
-                    <button class="btn-card">Додати</button> 
-                </article> 
-
-                <article class="product-card"> 
-                    <img src="3.jpg" alt="Ручки"> 
-                    <h3>Ручки та декор</h3> 
-                    <p>Алюмінієві та дерев'яні ручки різних стилів.</p> 
-                    <button class="btn-card">Додати</button> 
-                </article> 
-
-                <article class="product-card"> 
-                    <img src="4.png" alt="Підйомники"> 
-                    <h3>Підйомники</h3> 
-                    <p>Механічні ліфти для верхніх фасадів.</p> 
-                    <button class="btn-card">Додати</button> 
-                </article> 
-            </div>
-        </section> 
-
-        <section class="benefits"> 
-            <div class="benefits-grid">
-                <div class="benefit-item"><span>Точність</span></div>
-                <div class="benefit-item"><span>Швидкість</span></div>
-                <div class="benefit-item"><span>Контроль</span></div>
-            </div>
-        </section> 
-    </main> 
-
-    <footer class="footer"> 
-        <div class="footer-content">
-            <div class="hours-text">
-                <h4>Графік роботи складу</h4> 
-                <p>Пн-Пт: 9:00 – 18:00 | Сб: 10:00 – 14:00</p> 
-            </div>
-            <p>&copy; 2026 Меблеві Системи Про. Усі права захищені.</p> 
+    <nav class="navbar navbar-fixed-top furniture-navbar">
+        <div class="container navbar-container">
+            <a class="navbar-brand" href="#">
+                <img src="logo_furniture.png" alt="Logo">
+                <span>МЕБЛЕВІ СИСТЕМИ ПРО</span>
+            </a>
+            
+            <ul class="nav-links-flex hidden-xs">
+                <li><a href="#">Склад</a></li>
+                <li><a href="#catalog">Каталог</a></li>
+                <li><a href="#">Заявки</a></li>
+                <li><a href="#">Контакти</a></li>
+            </ul>
         </div>
-    </footer> 
+    </nav>
+
+    <section class="hero-flex">
+        <h1>Якісна <br><span>Фурнітура</span></h1>
+        <p>Прямі поставки комплектуючих для виробництва корпусних меблів. Контроль залишків та швидка логістика.</p>
+        <div class="hero-buttons">
+            <button class="btn btn-warning btn-lg">Оформити замовлення</button>
+            <button class="btn btn-default btn-lg">Складські залишки</button>
+        </div>
+    </section>
+
+    <section class="catalog-section" id="catalog">
+        <div class="container">
+            <h2 class="section-title">Категорії товарів</h2>
+            <div class="products-flex-grid">
+                
+                <div class="product-card-flex">
+                    <img src="1.jpeg" alt="Завіси">
+                    <div class="card-content">
+                        <h4>Завіси та петлі</h4>
+                        <p>Надійні петлі Blum з вбудованим доводчиком.</p>
+                    </div>
+                    <button class="btn btn-primary btn-block">Додати</button>
+                </div>
+
+                <div class="product-card-flex">
+                    <img src="2.png" alt="Направляючі">
+                    <div class="card-content">
+                        <h4>Направляючі</h4>
+                        <p>Кулькові та приховані направляючі повного висунення.</p>
+                    </div>
+                    <button class="btn btn-primary btn-block">Додати</button>
+                </div>
+
+                <div class="product-card-flex">
+                    <img src="3.jpg" alt="Ручки">
+                    <div class="card-content">
+                        <h4>Ручки та декор</h4>
+                        <p>Трендові моделі з алюмінію та латуні.</p>
+                    </div>
+                    <button class="btn btn-primary btn-block">Додати</button>
+                </div>
+
+                <div class="product-card-flex">
+                    <img src="4.png" alt="Підйомники">
+                    <div class="card-content">
+                        <h4>Підйомники</h4>
+                        <p>Механізми Aventos для верхніх кухонних модулів.</p>
+                    </div>
+                    <button class="btn btn-primary btn-block">Додати</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits-flex">
+        <div class="benefit-item" style="order: 2;">
+            <span class="glyphicon glyphicon-flash"></span>
+            <strong>Швидкість</strong>
+        </div>
+        <div class="benefit-item" style="order: 1;">
+            <span class="glyphicon glyphicon-ok"></span>
+            <strong>Якість</strong>
+        </div>
+        <div class="benefit-item" style="order: 4;">
+            <span class="glyphicon glyphicon-heart"></span>
+            <strong>Підтримка</strong>
+        </div>
+        <div class="benefit-item" style="order: 3;">
+            <span class="glyphicon glyphicon-wrench"></span>
+            <strong>Сервіс</strong>
+        </div>
+    </section>
+
+    <footer class="footer-flex">
+        <div>
+            <h4 style="color:var(--accent-gold)">Графік роботи складу</h4>
+            <p>Пн-Пт: 09:00 — 18:00 | Сб: 10:00 — 15:00</p>
+        </div>
+        <div style="text-align: right">
+            <p>&copy; 2026 Меблеві Системи Про.<br>Усі права захищено.</p>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 </html>
